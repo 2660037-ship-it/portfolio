@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>정다인 | 사회복지과 포트폴리오</title>
+  <style>
+    :root {
+      --primary: #B85042;
+      --secondary: #E7E8D1;
+      --bg-light: #FAF9F5;
+      --text-dark: #2B2625;
+      --text-muted: #5C5552;
+      --white: #FFFFFF;
+      --border: #DFDCD2;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Malgun Gothic", "맑은 고딕", sans-serif;
+      background-color: var(--bg-light);
+      color: var(--text-dark);
+      line-height: 1.65;
+      word-break: keep-all;
+    }
+
+    /* 헤더 */
+    header {
+      background-color: var(--primary);
+      color: var(--white);
+      padding: 4.5rem 1.5rem 3.5rem;
+      text-align: center;
+    }
+
+    header h1 {
+      font-size: 2.25rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.6rem;
+    }
+
+    header p {
+      font-size: 1.05rem;
+      color: var(--secondary);
+      max-width: 600px;
+      margin: 0 auto 1.8rem;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+
+    nav a {
+      color: var(--white);
+      text-decoration: none;
+      font-size: 0.92rem;
+      font-weight: 600;
+      padding: 0.45rem 1rem;
+      border-radius: 999px;
+      background-color: rgba(255, 255, 255, 0.14);
+      transition: background-color 0.2s;
+    }
+
+    nav a:hover {
+      background-color: rgba(255, 255, 255, 0.28);
+    }
+
+    /* 공통 컨테이너 & 섹션 */
+    main {
+      max-width: 1020px;
+      margin: 0 auto;
+      padding: 3rem 1.5rem 4rem;
+    }
+
+    section {
+      margin-bottom: 4.5rem;
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--primary);
+      display: inline-block;
+    }
+
+    /* 소개 섹션 */
+    .about-card {
+      background-color: var(--secondary);
+      border-radius: 16px;
+      padding: 2rem;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+    }
+
+    .about-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-bottom: 1rem;
+    }
+
+    .badge {
+      background-color: var(--primary);
+      color: var(--white);
+      font-size: 0.85rem;
+      font-weight: 700;
+      padding: 0.3rem 0.85rem;
+      border-radius: 999px;
+    }
+
+    .about-card p {
+      font-size: 1.05rem;
+      color: var(--text-dark);
+    }
+
+    /* 프로젝트 갤러리 그리드 */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .work-card {
+      background-color: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+      transition: transform 0.2s ease;
+    }
+
+    .work-card:hover {
+      transform: translateY(-4px);
+    }
+
+    /* 작품 전체가 잘리지 않게 보여주는 컨테이너 */
+    .media-box {
+      width: 100%;
+      background-color: #F2F0E6;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.75rem;
+      min-height: 260px;
+    }
+
+    .media-box img {
+      width: 100%;
+      height: auto;
+      max-height: 360px;
+      object-fit: contain;
+      border-radius: 8px;
+      display: block;
+    }
+
+    .work-info {
+      padding: 1.25rem;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .work-tag {
+      display: inline-block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--primary);
+      background-color: var(--secondary);
+      padding: 0.25rem 0.65rem;
+      border-radius: 6px;
+      margin-bottom: 0.55rem;
+      align-self: flex-start;
+    }
+
+    .work-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-dark);
+    }
+
+    /* 영상 & 소리 미디어 섹션 */
+    .media-section {
+      margin-top: 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .av-card {
+      background-color: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    }
+
+    .av-card video {
+      width: 100%;
+      border-radius: 10px;
+      background-color: #1A1A1A;
+      margin-top: 0.75rem;
+      display: block;
+    }
+
+    .audio-wrapper {
+      margin-top: 1rem;
+      background-color: var(--secondary);
+      padding: 1.2rem;
+      border-radius: 10px;
+    }
+
+    .av-card audio {
+      width: 100%;
+      margin-top: 0.6rem;
+    }
+
+    /* 스킬 섹션 */
+    .skills-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      list-style: none;
+    }
+
+    .skills-list li {
+      background-color: var(--white);
+      border: 1.5px solid var(--primary);
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 0.95rem;
+      padding: 0.55rem 1.1rem;
+      border-radius: 999px;
+    }
+
+    /* 연락처 섹션 */
+    .contact-box {
+      background-color: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.8rem;
+      text-align: center;
+    }
+
+    .contact-btn {
+      display: inline-block;
+      margin-top: 1rem;
+      background-color: var(--primary);
+      color: var(--white);
+      text-decoration: none;
+      font-weight: 700;
+      padding: 0.75rem 1.6rem;
+      border-radius: 10px;
+      transition: opacity 0.2s;
+    }
+
+    .contact-btn:hover {
+      opacity: 0.9;
+    }
+
+    /* 푸터 */
+    footer {
+      background-color: var(--secondary);
+      color: var(--text-muted);
+      text-align: center;
+      padding: 2rem 1.5rem;
+      font-size: 0.9rem;
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 600px) {
+      header h1 {
+        font-size: 1.8rem;
+      }
+      main {
+        padding: 2rem 1rem 3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 헤더 -->
+  <header>
+    <h1>정다인</h1>
+    <p>사회복지과 1학년 · AI 콘텐츠로 따뜻한 복지의 가치를 전하는 예비 사회복지사</p>
+    <nav>
+      <a href="#about">소개</a>
+      <a href="#projects">프로젝트 갤러리</a>
+      <a href="#skills">스킬</a>
+      <a href="#contact">연락처</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- 소개 -->
+    <section id="about">
+      <h2 class="section-title">소개</h2>
+      <div class="about-card">
+        <div class="about-meta">
+          <span class="badge">이름: 정다인</span>
+          <span class="badge">학과: 사회복지과</span>
+        </div>
+        <p>
+          이번 학기 수업을 통해 사회복지라는 것은 이름 그대로 정말 광범위하면서도, 모든 국민에게 꼭 필요한 도움을 주는 중요한 요소라는 것을 깊이 깨달았습니다. 배운 지식을 바탕으로 사람들에게 따뜻하고 알기 쉽게 다가가는 복지 콘텐츠를 만들고자 합니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- 프로젝트 갤러리 -->
+    <section id="projects">
+      <h2 class="section-title">프로젝트 갤러리</h2>
+
+      <div class="gallery-grid">
+        <!-- 1번 작품 -->
+        <article class="work-card">
+          <div class="media-box">
+            <img src="images/work01.jpg" data-name="work01" alt="사회복지과 카드뉴스 1 - 진짜 사람 돕는 4단계" />
+          </div>
+          <div class="work-info">
+            <span class="work-tag">실습2, 진짜 사람 돕는 4단계</span>
+            <h3 class="work-title">사회복지과 카드뉴스</h3>
+          </div>
+        </article>
+
+        <!-- 2번 작품 -->
+        <article class="work-card">
+          <div class="media-box">
+            <img src="images/work02.jpg" data-name="work02" alt="사회복지과 카드뉴스 2 - 눈높이 맞추기" />
+          </div>
+          <div class="work-info">
+            <span class="work-tag">실습2, 눈높이 맞추기</span>
+            <h3 class="work-title">사회복지과 카드뉴스</h3>
+          </div>
+        </article>
+
+        <!-- 3번 작품 -->
+        <article class="work-card">
+          <div class="media-box">
+            <img src="images/work03.jpg" data-name="work03" alt="사회복지과 카드뉴스 3 - 스스로 선택하도록 도와주기" />
+          </div>
+          <div class="work-info">
+            <span class="work-tag">실습2, 스스로 선택하도록 도와주기</span>
+            <h3 class="work-title">사회복지과 카드뉴스</h3>
+          </div>
+        </article>
+
+        <!-- 4번 작품 -->
+        <article class="work-card">
+          <div class="media-box">
+            <img src="images/work04.jpg" data-name="work04" alt="사회복지과 카드뉴스 4 - 권리를 존중하기" />
+          </div>
+          <div class="work-info">
+            <span class="work-tag">실습2, 권리를 존중하기</span>
+            <h3 class="work-title">사회복지과 카드뉴스</h3>
+          </div>
+        </article>
+
+        <!-- 5번 작품 -->
+        <article class="work-card">
+          <div class="media-box">
+            <img src="images/work05.jpg" data-name="work05" alt="사회복지과 카드뉴스 5 - 옆에서 함께 걷기" />
+          </div>
+          <div class="work-info">
+            <span class="work-tag">실습2, 옆에서 함께 걷기</span>
+            <h3 class="work-title">사회복지과 카드뉴스</h3>
+          </div>
+        </article>
+
+        <!-- 6번 작품 -->
+        <article class="work-card">
+          <div class="media-box">
+            <img src="images/work06.jpg" data-name="work06" alt="사회복지과 카드뉴스 6 - 더 따뜻한 세상 완성" />
+          </div>
+          <div class="work-info">
+            <span class="work-tag">실습2, 더 따뜻한 세상 완성</span>
+            <h3 class="work-title">사회복지과 카드뉴스</h3>
+          </div>
+        </article>
+      </div>
+
+      <!-- 영상 · 소리 섹션 -->
+      <div class="media-section">
+        <!-- 홍보영상 플레이어 -->
+        <div class="av-card">
+          <span class="work-tag">실습5, 결과물mp4</span>
+          <h3 class="work-title">사회복지과 홍보영상</h3>
+          <video controls preload="metadata">
+            <source src="images/promo.mp4" type="video/mp4" />
+            <source src="images/promo.mp4.mp4" type="video/mp4" />
+            <source src="promo.mp4" type="video/mp4" />
+            브라우저가 비디오 재생을 지원하지 않습니다.
+          </video>
+        </div>
+
+        <!-- 팟캐스트 플레이어 -->
+        <div class="av-card">
+          <span class="work-tag">실습1, 오디오 팟캐스트</span>
+          <h3 class="work-title">예비 사회복지사의 윤리적 가치</h3>
+          <div class="audio-wrapper">
+            <p style="font-size: 0.9rem; color: var(--text-muted);">
+              인간 존엄성, 편견 없는 공감, 자기 성찰에 대한 이야기를 담은 팟캐스트입니다.
+            </p>
+            <audio controls preload="metadata">
+              <source src="images/podcast.mp3" type="audio/mpeg" />
+              <source src="images/podcast.mp3.mp3" type="audio/mpeg" />
+              <source src="podcast.mp3" type="audio/mpeg" />
+              브라우저가 오디오 재생을 지원하지 않습니다.
+            </audio>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 스킬 -->
+    <section id="skills">
+      <h2 class="section-title">스킬</h2>
+      <ul class="skills-list">
+        <li>AI 카드뉴스 기획 및 제작</li>
+        <li>AI 홍보영상 편집</li>
+        <li>AI 음성 팟캐스트 제작</li>
+        <li>사회복지 기초 이해 및 공감 소통</li>
+      </ul>
+    </section>
+
+    <!-- 연락처 -->
+    <section id="contact">
+      <h2 class="section-title">연락처</h2>
+      <div class="contact-box">
+        <p>사회복지 프로젝트 협업이나 포트폴리오에 대해 궁금한 점이 있다면 언제든 연락해 주세요.</p>
+        <a href="mailto:dain.welfare@example.com" class="contact-btn">이메일 보내기</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- 푸터 -->
+  <footer>
+    <p>이 사이트의 글과 작품은 AI 도구의 도움으로 만들고 직접 다듬었습니다</p>
+  </footer>
+
+  <script>
+    // 파일 위치나 대소문자(images vs Images)가 달라도 자동으로 찾아주는 스크립트
+    document.querySelectorAll('img[data-name]').forEach(function(img) {
+      const name = img.getAttribute('data-name'); // work01 ~ work06
+      const num = name.replace('work0', '');      // 1 ~ 6
+      const candidates = [
+        'images/' + name + '.jpg',
+        'images/' + name + '.png',
+        'images/' + name + '.jpg.png',
+        'images/' + name + '.png.jpg',
+        'Images/' + name + '.jpg',
+        'Images/' + name + '.png',
+        'IMAGES/' + name + '.jpg',
+        'IMAGES/' + name + '.png',
+        './images/' + name + '.jpg',
+        './images/' + name + '.png',
+        name + '.jpg',
+        name + '.png',
+        'images/' + name + '.JPG',
+        'images/' + name + '.PNG',
+        'images/' + name + '.jpeg',
+        'images/work' + num + '.jpg',
+        'images/work' + num + '.png',
+        '../images/' + name + '.jpg',
+        '../images/' + name + '.png'
+      ];
+      let idx = 0;
+      img.onerror = function() {
+        idx++;
+        if (idx < candidates.length) {
+          img.src = candidates[idx];
+        } else {
+          // 끝까지 못 찾으면 현재 HTML이 열린 위치와 함께 안내 표시
+          const currentPath = decodeURIComponent(window.location.href);
+          const box = img.parentElement;
+          box.innerHTML = '<div style="padding:1rem; text-align:center; color:#B85042; font-size:0.82rem; font-weight:bold; word-break:break-all;">❌ ' + name + '.jpg 를 못 찾았어요!<br><span style="color:#333; font-weight:normal; display:block; margin-top:6px;">현재 열린 HTML 위치:<br>' + currentPath + '</span></div>';
+        }
+      };
+    });
+  </script>
+
+</body>
+</html>
